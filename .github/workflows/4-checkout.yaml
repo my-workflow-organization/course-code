@@ -1,6 +1,14 @@
 name: Checkout
 on: [push]
 jobs: 
+  automatic-checout-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List all files before
+        run: ls -a 
+      - uses: actions/checkout@v3
+      - name: List all files After
+        run: ls -a         
   checkout-and-display-files:
     runs-on: ubuntu-latest
     steps:
