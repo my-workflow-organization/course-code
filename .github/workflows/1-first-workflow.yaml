@@ -5,8 +5,21 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: my echo
-        run: echo "Sunny  Hell World "
+        run: echo "Sunny  Hello World "
       - name: Multiple Commands
         run: | 
           node -v
           npm -v
+  my-parallel-job-macos:
+    runs-on: macos-latest
+    steps: 
+      - name: my view software version
+        run: sw_vers   
+  my-dependant-job:
+    runs-on: windows-latest
+    needs: [my-run-shell-commands]
+    steps:
+      - name: my echo a string
+        run: Write-Output " my Windo strgs"
+      - name: My Error Step 
+        run: doesnotexists  
