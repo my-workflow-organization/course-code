@@ -22,4 +22,4 @@ jobs:
       - name: my echo a string
         run: Write-Output " my Windo strgs"
       - name: My Error Step 
-        run: doesnotexists  
+        run: doesnotexistss  
