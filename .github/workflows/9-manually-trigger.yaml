@@ -1,7 +1,17 @@
-name: MAnually Trigger
+name: My Manually Trigger
 on:
   workflow_dispatch:
-    
+    inputs:
+      manny-string:
+        description: A String input
+        type: string
+        required: true
+        default: "Default value"
+      sunny-string:
+        description: Put a sunny String 
+        type: string
+        required: true
+        default: "no Default value"  
 jobs:
   my-log-info:
     runs-on: ubuntu-latest
