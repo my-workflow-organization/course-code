@@ -1,6 +1,6 @@
 name: Workflow run
 on: 
-  workflor_run:
+  workflow_run:
     workflows: [Repository Events]
     types: [completed]
 jobs:
