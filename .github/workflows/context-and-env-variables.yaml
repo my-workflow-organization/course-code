@@ -36,9 +36,9 @@ jobs:
           MY_STEP_ENV: This is available only inside this step
           MY_ENV: like this we can override the workflow-level env , as it is defined on the top above
         run: |
-          echo '${{ env.MY_STEP_ENV }}'        
-          echo $MY_STEP_ENV
-          echo $MY_ENV
-          echo $MY_JOB_LEVEL_ENV
+          echo MY_STEP_ENV:      '${{ env.MY_STEP_ENV }}'        
+          echo MY_STEP_ENV:       $MY_STEP_ENV
+          echo MY_ENV:            $MY_ENV
+          echo MY_JOB_LEVEL_ENV   $MY_JOB_LEVEL_ENV
                                        
                                         
