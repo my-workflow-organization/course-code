@@ -1,8 +1,27 @@
-name: Repository Events
+name: MY Repository Events
 on: 
   push:
+    branches:
+      - main
+      - "frature/*"       #  all branches start with "feature/"  but not /feature/a/aa
+      - "feature/**"      # this will match  "feature/a" and also "feature/a/b"
+      - "!exculde-branch"  #  with  "!" this symbol we can exclude any branch under the "branches" key  
+                           #  we must put the excluded  branches name at the end.
+#    branches-ignore:
+#      - develop           # execute all branches except this, but we can not use both attributes:
+                           # "branches"   and "branches-ignore"
+    tags:
+      - v1          # this will match  "v1.1" or  "v1.1.2"
+      - "!v1.3.3"   # like this we can exclude a branch with this tag
+    paths:           # Her ein the "path" it will look for a specific file in the repo, if it is their then
+      - "**.js"      # only the "workfloe" will be executed, otherwise it will not
+      - "!abb.js"   # with "!" we can exclude any file
   pull_request:
     types: [opened, assigned, reopened, synchronize]
+    branches:     # we can also use "branches" foeld under "pull_request" also
+      - main      # it means a pullrequest only be executeed if the changes are done in this 
+    paths:        # case in the "main" branch and also "*.js" in the .js file both will be evaluated. 
+      - "**.js"    
   issues:
     types: [opened]  
 jobs: 
@@ -12,5 +31,4 @@ jobs:
       - run: | 
           echo $GITHUB_SHA
           echo $GITHUB_REF
-      - uses: actions/checkout@v3    
-  
+      - uses: actions/checkout@v3
