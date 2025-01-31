@@ -23,7 +23,7 @@ jobs:
   my-env-vars-and-context:             
     runs-on: ubuntu-latest      
    # if: $GITHUB_REF = 'refs/head/main '   # - never check like this as it check a evv variable on the machine, but we need it from github
-    if: github.ref == 'refs/eds/main'        # so check it as a context variable 
+    if: github.ref == 'refs/heads/main'        # so check it as a context variable 
     env:
       MY_JOB_LEVEL_ENV: This env variable is available only to all steps inside the  "my-env-vars-and-context"
     steps:                             
