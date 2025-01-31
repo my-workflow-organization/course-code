@@ -55,6 +55,6 @@ jobs:
           echo MY_ENV:            $MY_ENV
           echo MY_JOB_LEVEL_ENV   $MY_JOB_LEVEL_ENV
           echo SUNNY_NEW_ENV      $SUNNY_NEW_ENV
-          echo MY_BUNNY           $MY_BUNNY
+          echo ANY_RANDOM_VAR     $ANY_RANDOM_VAR
                                        
                                         
