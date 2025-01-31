@@ -7,8 +7,11 @@ jobs:
     steps:
       - name: Step 1
         run: sleep 20
-      - name: Fail
-        run: exit 1  
+      - name: Step 2
+        id: my-step-2                   # <-- here i am defineing the "id" for this step
+        run: exit 1                            # we must use in this say "success()" && 
+      - name: Runs only if "Step 2" failes     # below means if "success()" means step run successfully and it reurn a "failure" output
+        run: success() && steps.my-step-2.conclusion == 'failure'  # <-- if the step with "id" "my-step-2" fiails then only this step execute   
       - name: Runs on Failure
         if: failure()  #  it means "failure" then it only return "true", It means if we get in  above run a "failure"
         run: echo 'Runs only on failure'
