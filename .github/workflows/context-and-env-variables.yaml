@@ -40,7 +40,7 @@ jobs:
       - name: Multiline Environemnt varaible
         run: |
           DELIMETER=1234
-          echo "ANY_RANDOM_VAR<<DELIMETER" >> "$GITHUB_ENV"
+          echo "ANY_RANDOM_VAR<<$DELIMETER" >> "$GITHUB_ENV"
           echo "Here is a so much" >> "$GITHUB_ENV"
           echo "Here is a so much" >> "$GITHUB_ENV"
           echo "" >> "$GITHUB_ENV"           
