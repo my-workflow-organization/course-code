@@ -1,0 +1,10 @@
+name: My External event
+on: 
+  repository_dispatch:
+    types: [test]
+
+jobs:
+  my-echo-a-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.event.client_payload.env }}

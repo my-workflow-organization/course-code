@@ -1,6 +1,6 @@
 name: My Manually Trigger
 on:
-  workflow_dispatch:
+  workflow_dispatch:               # for "Manually trigger" we use "workflow_dispatch" attribute
     inputs:
       sunny-string:
         description: A String input
@@ -11,7 +11,7 @@ on:
         description: A number inpug
         default: 4
         type: number 
-      option: 
+      sunny-option: 
         description: "An Options Input"
         required: true 
         default: "Option 3"
@@ -20,7 +20,7 @@ on:
           - My-Option 1
           - MY-Option 2
           - My-Option 3
-      boolean: 
+      sunny-boolean: 
         description: A boolean option
         required: false
         type: boolean
@@ -35,7 +35,7 @@ jobs:
       - run: echo $GITHUB_REF
       - run: |
           echo "String: ${{ inputs.sunny-string }}"
-          echo "String: ${{ inputs.sunny-number }}"
-          echo "String: ${{ inputs.option }}"
-          echo "String: ${{ inputs.boolean }}"
+          echo "Numbers: ${{ inputs.sunny-number }}"
+          echo "Options: ${{ inputs.sunny-option }}"
+          echo "My-Boolean: ${{ inputs.sunny-boolean }}"
           echo "String: ${{ inputs.my-environment }}"
