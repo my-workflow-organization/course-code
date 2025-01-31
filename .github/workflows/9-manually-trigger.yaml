@@ -2,18 +2,40 @@ name: My Manually Trigger
 on:
   workflow_dispatch:
     inputs:
-      manny-string:
+      sunny-string:
         description: A String input
         type: string
         required: true
         default: "Default value"
-      sunny-string:
-        description: Put a sunny String 
-        type: string
-        required: true
-        default: "no Default value"  
+      sunny-number:
+        description: A number inpug
+        default: 4
+        type: number 
+      option: 
+        description: "An Options Input"
+        required: true 
+        default: "Option 3"
+        type: choice
+        options: 
+          - My-Option 1
+          - MY-Option 2
+          - My-Option 3
+      boolean: 
+        description: A boolean option
+        required: false
+        type: boolean
+      my-environment:
+        description:  "MY Environment"
+        type: environment
+        required: true  
 jobs:
   my-log-info:
     runs-on: ubuntu-latest
     steps:
       - run: echo $GITHUB_REF
+      - run: |
+          echo "Strin: ${{ inputs.sunny-string }}"
+          echo "Strin: ${{ inputs.sunny-number }}"
+          echo "Strin: ${{ inputs.option }}"
+          echo "Strin: ${{ inputs.boolean }}"
+          echo "Strin: ${{ inputs.my-environment }}"
