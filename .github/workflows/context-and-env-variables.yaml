@@ -1,13 +1,44 @@
 name: Context and Environment Variables
 on: [push]
 
+# Environment variable
+# -------------------
+# Environment variable lives inside the "Runner machine", When our workflow send in the "Runner machine"
+# This value it print from inside the "Runner machine (Ubuntu)", as it is available on the ubunut so we can print 
+# env variable starts with a "$"  sign
+# $ as it is from the environment from machine so we can not evluate it with "if" statement
+
+# Variable from "Context"
+# ------------------------ 
+# It is defined by the github-actions and it is evaluated by the github and we are taking value from the "github" directly
+#  this value is added from outside the runner maching, As this variable comes from githun so we need to print like this
+# '${{ env.MY_STEP_ENV }}'     <-- as it is from github so we can eveluate it with  "if" statement 
+
+#Note:  "if" case if always evaluated before the workflow is sended to the "Runner machine"
+
+env:
+  MY_ENV: This variable is available for all jobs
+
 jobs: 
-  my-env-vars-and-context:
-    runs-on: ubuntu-latest
-    steps:                             # Environment variable lives inside the "Runner machine"
-      - name: Log Environmen variable  # When our workflow send in the "Runner machine"
-        run: echo $GITHUB_REF          # This value it print from inside the "Runner machine (Ubuntu)"
-                  
-      - name: Log Context              # It is defined by the github-actions and it is evaluated by the 
-        run: echo '${{ github.ref }}'  # the github and we are taking value from the "github" directly
-                                       #  this value is added from outside the runner maching
+  my-env-vars-and-context:             
+    runs-on: ubuntu-latest      
+   # if: $GITHUB_REF = 'refs/head/main '   # - never check like this as it check a evv variable on the machine, but we need it from github
+    if: github.ref == 'refs/eds/main'        # so check it as a context variable 
+    env:
+      MY_JOB_LEVEL_ENV: This env variable is available only to all steps inside the  "my-env-vars-and-context"
+    steps:                             
+      - name: Log Environmen variable    
+        run: echo $GITHUB_REF             
+      - name: Log Context            
+        run: echo '${{ github.ref }}'
+      - name: Log Custom ENV Vars
+        env:     
+          MY_STEP_ENV: This is available only inside this step
+          MY_ENV: like this we can override the workflow-level env , as it is defined on the top above
+        run: |
+          echo '${{ env.MY_STEP_ENV }}'        
+          echo $MY_STEP_ENV
+          echo $MY_ENV
+          echo $MY_JOB_LEVEL_ENV
+                                       
+                                        
