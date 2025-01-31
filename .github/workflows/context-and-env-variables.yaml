@@ -1,0 +1,13 @@
+name: Context and Environment Variables
+on: [push]
+
+jobs: 
+  my-env-vars-and-context:
+    runs-on: ubuntu-latest
+    steps:                             # Environment variable lives inside the "Runner machine"
+      - name: Log Environmen variable  # When our workflow send in the "Runner machine"
+        run: echo $GITHUB_REF          # This value it print from inside the "Runner machine (Ubuntu)"
+                  
+      - name: Log Context              # It is defined by the github-actions and it is evaluated by the 
+        run: echo '${{ github.ref }}'  # the github and we are taking value from the "github" directly
+                                       #  this value is added from outside the runner maching
