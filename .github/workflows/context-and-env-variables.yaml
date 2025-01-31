@@ -37,6 +37,13 @@ jobs:
         run: |                                             # Below we are creating a Env variable for the whole machine, so any step or workflow can fetch it
           echo "SUNNY_ENV_NEW=$(date)"  >> "$GITHUB_ENV"   
           echo "MY_JOB_LEVEL_ENV=$RANDOM" >>  "$GITHUB_ENV"
+      - name: Multiline Environemnt varaible
+        run: |
+          MY_BUNNY=1234
+          echo "ANY_RANDOM_VAR<<MY_BUNNY" >> "$GITHUB_ENV"
+          echo "Here is a so much" >> "$GITHUB_ENV"
+          echo "Here is a so much" >> "$GITHUB_ENV"          
+          echo "$MY_BUNNY" >> "$GITHUB_ENV"
       - name: Log Custom ENV Vars
         env:     
           MY_STEP_ENV: This is available only inside this step
