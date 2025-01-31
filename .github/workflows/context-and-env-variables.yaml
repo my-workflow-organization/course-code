@@ -42,7 +42,8 @@ jobs:
           MY_BUNNY=1234
           echo "ANY_RANDOM_VAR<<MY_BUNNY" >> "$GITHUB_ENV"
           echo "Here is a so much" >> "$GITHUB_ENV"
-          echo "Here is a so much" >> "$GITHUB_ENV"          
+          echo "Here is a so much" >> "$GITHUB_ENV"
+          echo "" >> "$GITHUB_ENV"           
           echo "$MY_BUNNY" >> "$GITHUB_ENV"
       - name: Log Custom ENV Vars
         env:     
@@ -54,5 +55,6 @@ jobs:
           echo MY_ENV:            $MY_ENV
           echo MY_JOB_LEVEL_ENV   $MY_JOB_LEVEL_ENV
           echo SUNNY_NEW_ENV      $SUNNY_NEW_ENV
+          echo MY_BUNNY           $MY_BUNNY
                                        
                                         
