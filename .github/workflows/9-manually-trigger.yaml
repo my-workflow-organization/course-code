@@ -34,8 +34,8 @@ jobs:
     steps:
       - run: echo $GITHUB_REF
       - run: |
-          echo "Strin: ${{ inputs.sunny-string }}"
-          echo "Strin: ${{ inputs.sunny-number }}"
-          echo "Strin: ${{ inputs.option }}"
-          echo "Strin: ${{ inputs.boolean }}"
-          echo "Strin: ${{ inputs.my-environment }}"
+          echo "String: ${{ inputs.sunny-string }}"
+          echo "String: ${{ inputs.sunny-number }}"
+          echo "String: ${{ inputs.option }}"
+          echo "String: ${{ inputs.boolean }}"
+          echo "String: ${{ inputs.my-environment }}"
