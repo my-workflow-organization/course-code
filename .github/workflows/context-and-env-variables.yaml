@@ -16,6 +16,8 @@ on: [push]
 
 #Note:  "if" case if always evaluated before the workflow is sended to the "Runner machine"
 
+# "$GITHUB_ENV"   <-- it is the file name for "Ubunut" where all the Env variables are defined
+
 env:
   MY_ENV: This variable is available for all jobs
 
@@ -31,6 +33,10 @@ jobs:
         run: echo $GITHUB_REF             
       - name: Log Context            
         run: echo '${{ github.ref }}'
+      - name: Set Environment Variable
+        run: |                                             # Below we are creating a Env variable for the whole machine, so any step or workflow can fetch it
+          echo "SUNNY_NEW_ENV=$(date)"  >> "$GITHUB_ENV"   
+          echo "MY_JOB_LEVEL_ENV" >>  "$GITHUB_ENV"
       - name: Log Custom ENV Vars
         env:     
           MY_STEP_ENV: This is available only inside this step
@@ -40,5 +46,6 @@ jobs:
           echo MY_STEP_ENV:       $MY_STEP_ENV
           echo MY_ENV:            $MY_ENV
           echo MY_JOB_LEVEL_ENV   $MY_JOB_LEVEL_ENV
+          echo SUNNY_NEW_ENV      $SUNNY_NEW_ENV
                                        
                                         
