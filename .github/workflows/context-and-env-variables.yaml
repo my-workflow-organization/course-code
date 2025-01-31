@@ -41,8 +41,8 @@ jobs:
         run: |
           DELIMETER=1234
           echo "ANY_RANDOM_VAR<<$DELIMETER" >> "$GITHUB_ENV"
-          echo "Here is a so much" >> "$GITHUB_ENV"
-          echo "Here is a so much" >> "$GITHUB_ENV"
+          echo "This is from first line ####### " >> "$GITHUB_ENV"
+          echo "This is from second line  " >> "$GITHUB_ENV"
           echo "" >> "$GITHUB_ENV"           
           echo "$DELIMETER" >> "$GITHUB_ENV"
       - name: Log Custom ENV Vars
