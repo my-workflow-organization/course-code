@@ -7,11 +7,13 @@ jobs:
     steps:
       - name: Step 1
         run: sleep 20
+      - name: Fail
+        run: exit 1  
       - name: Runs on Failure
-        if: failure()  #  it means if "failure" then it return "true"
+        if: failure()  #  it means "failure" then it only return "true", It means if we get in  above run a "failure"
         run: echo 'Runs only on failure'
       - name: Runs on Success
-        if: success()   # success is the default behaviour, 
+        if: success()   # success is the default behaviour, it return "true" 
         run: echo 'Run on Success'  
       - name: Always run
         if: always()     # it return true, It is always going to run, either "success" or "failure"
