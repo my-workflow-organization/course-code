@@ -1,0 +1,31 @@
+name: Matrix Field B
+on: [push]
+
+
+#------- ORIGINAL --------#
+# X {os: ubuntu-latest, node-version: 14, is-ubuntu: true, experimental: false}
+# {os: ubuntu-latest, node-version: 15, is-ubuntu: true, experimental: false}
+# {os: ubuntu-latest, node-version: 16, is-ubuntu: true, experimental: true}
+# {os: windows-latest, node-version: 14, experimental: false}
+# {os: windows-latest, node-version: 15, experimental: false}
+# {os: windows-latest, node-version: 16, experimental: false}
+# {os: macos-latest, node-version: 15}
+# {os: ubuntu-latest, node-version: 17 }
+
+jobs: 
+  my-node-versio:
+    continue-on-error: true
+    strategy: 
+      matrix: 
+        os: [ubuntu-latest, windows-latest]
+        node-version: [14,15,16]  # like this we have in our workfow another node language version without defining saperatelly
+      max-parallel: 3        # it will run only 3 jobs in parallel at one time.
+      fail-fast: false    # When we set it to true, it means if one job fails then entire workflow will be stopped
+                          # but if we put to false, then if one job is failed then other jobs will still continue 
+    runs-on: ${{ matrix.os }} 
+    steps:
+      - run: node -v
+      - uses: actions/setup-node@v3
+        with: 
+          node-version: ${{ matrix.node-version }} #  this will run three times a above we have defined [14,15,16] three values
+      - run: node -v
