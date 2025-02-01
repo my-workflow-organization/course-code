@@ -1,12 +1,13 @@
-name: Matrix
+name: Matrix Field B
 on: [push]
 
 jobs: 
   my-node-version:
-    runs-on: ubuntu-latest
     strategy: 
       matrix: 
+        os: [ubuntu-latest, windows-latest]
         node-version: [14,15,16]  # like this we have in our workfow another node language version without defining saperatelly
+    runs-on: ${{ matrix.os }} 
     steps:
       - run: node -v
       - uses: actions/setup-node@v3
