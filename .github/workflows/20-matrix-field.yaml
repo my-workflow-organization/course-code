@@ -5,7 +5,7 @@ jobs:
   my-node-version:
     strategy: 
       matrix: 
-        os: [ubuntu-latest, windows-latest]
+        osr: [ubuntu-latest, windows-latest]
         node-version: [14,15,16]  # like this we have in our workfow another node language version without defining saperatelly
     runs-on: ${{ matrix.os }} 
     steps:
