@@ -15,10 +15,16 @@ jobs:
   my-prepare-matrix:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/github-script@v6
+        id: my-matrix-array
+        with: 
+          script: "return {os: context.payload.inputs['os'].split(','), 'node-version': context.payload.inputs['node-version'].split(',') }"
+          result-encoding: json
+      - run: echo '${{ steps.my-matrix-array.outputs.result }}'    
       - run: echo "aaa=value" >> $GITHUB_OUTPUT
         id: my-step-1 
       - run: echo "aaa=value 2" >> $GITHUB_OUTPUT
-        id: my-step-2
+        id: my-step-2                    # with the help of this "id" we are able to print the result of this step below.
       - run: |
           echo '${{ steps.my-step-1.outputs.aaa }}'  
           echo '${{ steps.my-step-2.outputs.aaa }}'                     
