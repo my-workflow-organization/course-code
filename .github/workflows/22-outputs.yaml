@@ -34,7 +34,7 @@ jobs:
     needs: aa            # B -  "needs" with this field name we are making the whole output of above step for us
     strategy:            #      as we are putting the name of the above step here        
       matrix: 
-        os: ${{ fromJson(needs.aa.outputs.my-matrix-arrays).os }}
+        os: ${{ fromJson(needs.aa.outputs.my-matrix-arrays).os }}         # c - here we are using theoutput of the "aa" whole step
         node-version: ${{ fromJson(needs.aa.outputs.my-matrix-arrays).node-version }}
     runs-on: ${{ matrix.os }} 
     steps:

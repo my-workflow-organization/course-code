@@ -1,0 +1,17 @@
+name: Concurrency-2
+run-name: Concurrency-2 ${{ github.event.inputs.environment }}
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment"
+        type: environment
+        required: true 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.inputs.environment }}
+  cancel-in-progress: true    # this file will cancle any which same job which is in progress and run this job
+jobs:                          # so we can forcefully do it. 
+  sleep:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 30
