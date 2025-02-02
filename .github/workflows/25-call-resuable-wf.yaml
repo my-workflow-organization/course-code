@@ -14,5 +14,5 @@ jobs:
     with: 
       name: ${{ inputs.name }}
     secrets: 
-      access-token: ${{ secrets.MY_ACCESS_TOKEN }}
+      my-access-token: ${{ secrets.MY_ACCESS_TOKEN }}
         
