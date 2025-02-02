@@ -12,8 +12,10 @@ on:
         type: string
 
 jobs:
-  my-prepare-matrix:
+  aa:                   # A -  this is the job name, with this name we can get this whole job output below
     runs-on: ubuntu-latest
+    outputs: 
+      my-matrix-arrays: ${{ steps.my-matrix-array.outputs.result }}
     steps:
       - uses: actions/github-script@v6
         id: my-matrix-array
@@ -21,18 +23,19 @@ jobs:
           script: "return {os: context.payload.inputs['os'].split(','), 'node-version': context.payload.inputs['node-version'].split(',') }"
           result-encoding: json
       - run: echo '${{ steps.my-matrix-array.outputs.result }}'    
-      - run: echo "aaa=value" >> $GITHUB_OUTPUT
+      - run: echo "a1=value" >> $GITHUB_OUTPUT
         id: my-step-1 
-      - run: echo "aaa=value 2" >> $GITHUB_OUTPUT
+      - run: echo "b1=value 2" >> $GITHUB_OUTPUT
         id: my-step-2                    # with the help of this "id" we are able to print the result of this step below.
       - run: |
-          echo '${{ steps.my-step-1.outputs.aaa }}'  
-          echo '${{ steps.my-step-2.outputs.aaa }}'                     
-  my-node-versio:
-    strategy: 
+          echo '${{ steps.my-step-1.outputs.a1 }}'  
+          echo '${{ steps.my-step-2.outputs.b1 }}'                     
+  bb:
+    needs: aa            # B -  "needs" with this field name we are making the whole output of above step for us
+    strategy:            #      as we are putting the name of the above step here        
       matrix: 
-        os: [ubuntu-latest, windows-latest]
-        node-version: [14,15,16]
+        os: ${{ fromJson(needs.aa.outputs.my-matrix-arrays).os }}
+        node-version: ${{ fromJson(needs.aa.outputs.my-matrix-arrays).node-version }}
     runs-on: ${{ matrix.os }} 
     steps:
       - run: node -v
