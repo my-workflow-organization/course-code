@@ -17,6 +17,9 @@ jobs:
       my-access-token: ${{ secrets.MY_ACCESS_TOKEN }}
   calling-a-resuable-wf-in-the-same-repo:
     uses: ./.github/workflows/27-a-nested-resuable-wf.yaml
+    secrets: inherit
+    permissions:              # with the "permissions" we can define permissions for "GITHUB_TOKEN"
+      issues: read            # the called wf can have same permissions as the calling wf or less permissions
   using-reusable-wg-output:
     runs-on: ubuntu-latest
     needs: calling-a-resuable-wf-in-the-same-repo
