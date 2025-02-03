@@ -1,0 +1,21 @@
+name: Resuable Workflow B
+on:
+  workflow_call:
+    outputs:
+      dateCC:
+        description: 'Date Value'
+        value: ${{ jobs.my-generate-output.outputs.dateBB }}
+jobs: 
+  nested-workflow-call:
+    uses: my-workflow-organization/my-resuable-workflow/.github/workflows/my-resuable.yaml@main  # we can put a tag or commit-id, branch name
+    with: 
+      name: ${{ inputs.name }}
+    secrets: 
+      my-access-token: ${{ secrets.MY_ACCESS_TOKEN }}    
+  my-generate-output:
+    runs-on: ubuntu-latest
+    outputs:
+      dateBB: ${{ steps.my-date-step.outputs.dateAA }}
+    steps:
+      - run: echo "dateAA=$(date)" >> $GITHUB_OUTPUT
+        id: my-date-step

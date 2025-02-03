@@ -16,7 +16,9 @@ jobs:
     secrets: 
       my-access-token: ${{ secrets.MY_ACCESS_TOKEN }}
   calling-a-resuable-wf-in-the-same-repo:
-    uses: ./.github/workflows/26-resuable-wf-seperate.yaml
+    uses: ./.github/workflows/25-a-resuable-wf-seperate.yaml
+    secrets: inherit
+#      access-token: ${{ secrets.MY_ACCESS_TOKEN }}
   using-reusable-wg-output:
     runs-on: ubuntu-latest
     needs: calling-a-resuable-wf-in-the-same-repo
