@@ -1,4 +1,4 @@
-name: Calling Resuable Workflow
+name: Calling Resuable Workflow B
 on:
  workflow_dispatch:
    inputs:
