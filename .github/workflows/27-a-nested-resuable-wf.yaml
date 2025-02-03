@@ -9,9 +9,10 @@ jobs:
   nested-workflow-call:
     uses: my-workflow-organization/my-resuable-workflow/.github/workflows/my-resuable.yaml@main  # we can put a tag or commit-id, branch name
     with: 
-      name: ${{ inputs.name }}
-    secrets: 
-      my-access-token: ${{ secrets.MY_ACCESS_TOKEN }}    
+      name: 'Sunny'
+ #   secrets: inherit     # with the "inherit" we can pass all the secrets from the caller workflow to the calles workflow
+    secrets:       
+      my-access-token: ${{ secrets.MY_ACCESS_TOKEN }}  
   my-generate-output:
     runs-on: ubuntu-latest
     outputs:

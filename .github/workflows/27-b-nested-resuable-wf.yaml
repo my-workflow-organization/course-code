@@ -6,7 +6,7 @@ on:
        description: "Input description"
        type: string
        default: "Ali"
-       required: false 
+       required: false
 
 jobs: 
   calling-a-resuable-wf:
@@ -16,9 +16,7 @@ jobs:
     secrets: 
       my-access-token: ${{ secrets.MY_ACCESS_TOKEN }}
   calling-a-resuable-wf-in-the-same-repo:
-    uses: ./.github/workflows/25-a-resuable-wf-seperate.yaml
-    secrets: inherit
-#      access-token: ${{ secrets.MY_ACCESS_TOKEN }}
+    uses: ./.github/workflows/27-a-nested-resuable-wf.yaml
   using-reusable-wg-output:
     runs-on: ubuntu-latest
     needs: calling-a-resuable-wf-in-the-same-repo
