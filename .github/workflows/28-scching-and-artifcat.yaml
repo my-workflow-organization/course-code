@@ -1,3 +1,10 @@
+# Note:
+# In the repo "course-code"  click on "Actions"
+# On the left side their is a option "Caches" 
+# As we save with the key Name  "npm-cache"
+# Their you will find this key and the Cache is stored under it
+
+
 name: Caching and Artificats
 on: 
   workflow_dispatch
@@ -11,7 +18,11 @@ jobs:
         uses: actions/cache@v3
         with: 
           path: ~/.npm
-          key: "npm-cache"
+ #         key: "npm-cache"             # this is just a name of the key, On this name the cache is stored in the Github Actions
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-cache-
+            ${{ runner.os }}-
       - name: Display Cache Output 
         run: echo '${{ toJSON(steps.cache-dependencies.outputs) }}'    
       - name: Install dependencies 
@@ -24,3 +35,4 @@ jobs:
             const res = await axios('https://icanhazdadjoke.com/', { headers: { Accept: 'text/plain' } })
             console.log(res.data)
       
+
