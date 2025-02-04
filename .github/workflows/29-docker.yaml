@@ -31,6 +31,6 @@ jobs:
           entrypoint: /usr/local/bin/node
           args: -p 2+3  
       - name: Log a node version
-        uses: docker://node:18.6-alpine3.17
+        uses: docker://node:20.3-alpine3.17
         with:
           args: -v
